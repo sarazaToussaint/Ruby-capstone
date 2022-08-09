@@ -14,8 +14,8 @@ class Item
     @genre = genre
     genre.items.push(self) unless genre.items.include?(self)
   end
-  
-  def add_author(genre)
+
+  def add_author(_genre)
     @author = author
     author.items.push(self) unless author.items.include?(self)
   end
@@ -28,10 +28,10 @@ class Item
   def move_to_archive
     true if can_be_archived?
   end
-  
+
   def can_be_archived?
     (Date.today.year - @publish_date.year) > 10
   end
 
-  private: can_be_archived?
+  private :can_be_archived?
 end
