@@ -1,3 +1,5 @@
 require_relative '../classes/item'
 require_relative '../classes/book'
 require_relative '../classes/label'
+require_relative '../classes/mucis_album'
+require_relative '../classes/genre'
