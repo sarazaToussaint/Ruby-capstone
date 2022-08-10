@@ -1,14 +1,14 @@
 require_relative 'spec_helper'
 
-describe Music_Album do
-  context 'Music_Album class' do
+describe MusicAlbum do
+  context 'MusicAlbum class' do
     before :all do
-      @album = Music_Album.new( '03-05-2020', 'Afro Congo', on_spotify: true)
-      @second_album = Music_Album.new('24-04-2011', 'Acts Of God', on_spotify: true)
+      @album = MusicAlbum.new('03-05-2020', 'Afro Congo', on_spotify: true)
+      @second_album = MusicAlbum.new('24-04-2011', 'Acts Of God', on_spotify: true)
     end
 
     it 'should be an instance of Music Album class: ' do
-      expect(@album).to be_instance_of Music_Album
+      expect(@album).to be_instance_of MusicAlbum
     end
 
     it 'should display correct name' do
