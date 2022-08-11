@@ -11,8 +11,8 @@ class App
   end
 
   def run
-    add_author
-    list_authors
+    add_label
+    list_labels
 
   end
 
@@ -31,6 +31,12 @@ class App
   def list_authors
     @authors.each do |author|
       puts "First name: '#{author.first_name}', Last name: '#{author.last_name}'"
+    end
+  end
+
+  def list_labels
+    @labels.each do |label|
+      puts " ID: '#{label.id}' - Title: '#{label.title}', Cover color: '#{label.color}'"
     end
   end
 
@@ -89,6 +95,20 @@ class App
     @authors.push(author)
     
     puts 'Author Created successfully'
+    puts
+  end
+
+  def add_label()
+    print 'Title: '
+    title = gets.chomp.capitalize.to_s
+
+    print 'Color: '
+    color = gets.chomp.capitalize.to_s
+
+    label = Label.new(title, color)
+    @labels.push(label)
+    
+    puts 'Label Created successfully'
     puts
   end
 
