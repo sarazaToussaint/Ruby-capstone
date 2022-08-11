@@ -10,6 +10,7 @@ class App
     @labels = []
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def options(input)
     case input
     when 1
@@ -30,13 +31,9 @@ class App
       add_album
     when 9
       add_game
-    when 10
-      # save_data
-      exit
-    else
-      puts 'Choose a number from 1 to 10'
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def list_books
     @books.each do |book|

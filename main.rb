@@ -29,7 +29,12 @@ class Run
       menu
       user_choose = gets.chomp.to_i
 
-      @run.options(user_choose)
+      if user_choose == 10
+        # @run.save_data
+        exit
+      else
+        @run.options(user_choose)
+      end
     end
     puts 'Thank you for using the app!'
   end
