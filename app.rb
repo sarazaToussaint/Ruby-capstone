@@ -11,9 +11,8 @@ class App
   end
 
   def run
-    add_label
-    list_labels
-
+    add_genre
+    list_genres
   end
 
   def list_books
@@ -40,9 +39,20 @@ class App
     end
   end
 
+  def list_albums
+    @albums.each do |album|
+      puts "Published at: '#{album.publish_date}', Name: '#{album.name}', On Spotify: '#{album.on_spotify}'"
+    end
+  end
+
+  def list_genres
+    @genres.each do |genre|
+      puts "ID: '#{genre.id}', Name: '#{genre.name}'"
+    end
+  end
 
   def create_book
-    print 'Publish Date: [DD-MM-YYYY]'
+    print 'Publish Date: [DD-MM-YYYY] '
     publish_date = gets.chomp
 
     print 'Publisher: '
@@ -57,8 +67,8 @@ class App
     puts
   end
 
-  def add_game()
-    print 'Publish Date: [DD-MM-YYYY]'
+  def add_game
+    print 'Publish Date: [DD-MM-YYYY] '
     publish_date = gets.chomp
 
     print 'Multiplayer: Y/N '
@@ -69,11 +79,11 @@ class App
     when 'N'
       multi = 'NO'
     else
-      puts 'Please add Y or N'
+      puts 'Please add Y or N '
       multi = gets.chomp.capitalize.to_s
     end
 
-    print 'Last Played at: [DD-MM-YYYY]'
+    print 'Last Played at: [DD-MM-YYYY] '
     last_played_at = gets.chomp
 
 
@@ -84,7 +94,7 @@ class App
     puts
   end
 
-  def add_author()
+  def add_author
     print 'First name: '
     first_name = gets.chomp.capitalize.to_s
 
@@ -98,7 +108,7 @@ class App
     puts
   end
 
-  def add_label()
+  def add_label
     print 'Title: '
     title = gets.chomp.capitalize.to_s
 
@@ -111,6 +121,41 @@ class App
     puts 'Label Created successfully'
     puts
   end
+  
+  def add_album
+    print 'Publish Date: [DD-MM-YYYY] '
+    publish_date = gets.chomp
 
+    print "Name: "
+    name = gets.chomp.capitalize.to_s
 
+    print 'Is the album on spotfiy? (Y/N) '
+    spotify = gets.chomp.upcase
+    case spotify
+    when 'Y'
+      spotify = true
+    when 'N'
+      spotify = false
+    else
+      print 'Please enter Y for Yes or N for No: '
+      spotify = gets.chomp.upcase
+    end
+
+    album = MusicAlbum.new(publish_date, name, on_spotify: spotify)
+    @albums.push(album)
+    
+    puts 'Album Created successfully'
+    puts
+  end
+
+  def add_genre
+    print 'Name: '
+    name = gets.chomp
+    
+    genre = Genre.new(name)
+    @genres.push(genre)
+    
+    puts 'Genre Created successfully'
+    puts
+  end
 end
