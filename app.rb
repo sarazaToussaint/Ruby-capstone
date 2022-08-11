@@ -23,7 +23,7 @@ class App
 
   def list_games
     @games.each do |game|
-      puts "Publish_date: '#{game.publish_date}', Multiplayer: #{game.multiplayer}, Last played at: #{game.last_played_at}"
+      puts "Publish_date: '#{game.publish_date}', Multiplayer: #{game.multiplayer}, Last played: #{game.last_played_at}"
     end
   end
 
@@ -86,10 +86,9 @@ class App
     print 'Last Played at: [DD-MM-YYYY] '
     last_played_at = gets.chomp
 
-
     game = Game.new(publish_date, multi, last_played_at)
     @games.push(game)
-    
+
     puts 'Game Created successfully'
     puts
   end
@@ -103,7 +102,7 @@ class App
 
     author = Author.new(first_name, last_name)
     @authors.push(author)
-    
+
     puts 'Author Created successfully'
     puts
   end
@@ -117,16 +116,16 @@ class App
 
     label = Label.new(title, color)
     @labels.push(label)
-    
+
     puts 'Label Created successfully'
     puts
   end
-  
+
   def add_album
     print 'Publish Date: [DD-MM-YYYY] '
     publish_date = gets.chomp
 
-    print "Name: "
+    print 'Name: '
     name = gets.chomp.capitalize.to_s
 
     print 'Is the album on spotfiy? (Y/N) '
@@ -143,7 +142,7 @@ class App
 
     album = MusicAlbum.new(publish_date, name, on_spotify: spotify)
     @albums.push(album)
-    
+
     puts 'Album Created successfully'
     puts
   end
@@ -151,10 +150,10 @@ class App
   def add_genre
     print 'Name: '
     name = gets.chomp
-    
+
     genre = Genre.new(name)
     @genres.push(genre)
-    
+
     puts 'Genre Created successfully'
     puts
   end
