@@ -10,9 +10,32 @@ class App
     @labels = []
   end
 
-  def run
-    add_genre
-    list_genres
+  def options(input)
+    case input
+    when 1
+      list_books
+    when 2
+      list_albums
+    when 3
+      list_games
+    when 4
+      list_genres
+    when 5
+      list_labels
+    when 6
+      list_authors
+    when 7
+      create_book
+    when 8
+      add_album
+    when 9
+      add_game
+    when 10
+      # save_data
+      exit
+    else
+      puts 'Choose a number from 1 to 10'
+    end
   end
 
   def list_books
