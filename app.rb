@@ -11,8 +11,8 @@ class App
   end
 
   def run
-    add_game
-    list_games
+    add_author
+    list_authors
 
   end
 
@@ -27,6 +27,13 @@ class App
       puts "Publish_date: '#{game.publish_date}', Multiplayer: #{game.multiplayer}, Last played at: #{game.last_played_at}"
     end
   end
+
+  def list_authors
+    @authors.each do |author|
+      puts "First name: '#{author.first_name}', Last name: '#{author.last_name}'"
+    end
+  end
+
 
   def create_book
     print 'Publish Date: [DD-MM-YYYY]'
@@ -70,5 +77,20 @@ class App
     puts 'Game Created successfully'
     puts
   end
+
+  def add_author()
+    print 'First name: '
+    first_name = gets.chomp.capitalize.to_s
+
+    print 'Last name: '
+    last_name = gets.chomp.capitalize.to_s
+
+    author = Author.new(first_name, last_name)
+    @authors.push(author)
+    
+    puts 'Author Created successfully'
+    puts
+  end
+
 
 end
