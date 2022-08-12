@@ -28,7 +28,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Demo video
 
-- [Check videp](https://drive.google.com/file/d/15BwInGp6RlGDaTIYPzRBAPY-P6JwH9TH/view?usp=sharing
+(https://drive.google.com/file/d/15BwInGp6RlGDaTIYPzRBAPY-P6JwH9TH/view?usp=sharing
 /)
 
 ## Authors
