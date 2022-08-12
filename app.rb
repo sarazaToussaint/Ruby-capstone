@@ -1,6 +1,10 @@
 require './spec/spec_helper'
+# require 'json'
+require './modules/preserve_data.rb'
 
 class App
+  include PreserveData
+
   def initialize
     @books = []
     @authors = []
@@ -8,6 +12,7 @@ class App
     @games = []
     @genres = []
     @labels = []
+    load_all_data
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
@@ -72,7 +77,7 @@ class App
   end
 
   def create_book
-    print 'Publish Date: [DD-MM-YYYY] '
+    print 'Publish Date: [YYYY-MM-DD] '
     publish_date = gets.chomp
 
     print 'Publisher: '
@@ -88,7 +93,7 @@ class App
   end
 
   def add_game
-    print 'Publish Date: [DD-MM-YYYY] '
+    print 'Publish Date: [YYYY-MM-DD] '
     publish_date = gets.chomp
 
     print 'Multiplayer: Y/N '
@@ -103,7 +108,7 @@ class App
       multi = gets.chomp.capitalize.to_s
     end
 
-    print 'Last Played at: [DD-MM-YYYY] '
+    print 'Last Played at: [YYYY-MM-DD] '
     last_played_at = gets.chomp
 
     game = Game.new(publish_date, multi, last_played_at)
@@ -142,7 +147,7 @@ class App
   end
 
   def add_album
-    print 'Publish Date: [DD-MM-YYYY] '
+    print 'Publish Date: [YYYY-MM-DD] '
     publish_date = gets.chomp
 
     print 'Name: '
@@ -177,4 +182,19 @@ class App
     puts 'Genre Created successfully'
     puts
   end
+  
+  def save_all_data
+    books = []
+    @books.each do |book|
+      books.push({publish_date: book.publish_date, publisher: book.publisher, state: book.cover_state })
+    end
+    save_data(books, 'books')
+  end
+
+  def load_all_data
+    books = load_data('books')
+    books.each do |book| 
+      @books.push(Book.new(book['publish_date'], book['publisher'], book['state']))
+    end 
+  end  
 end

@@ -30,7 +30,7 @@ class Run
       user_choose = gets.chomp.to_i
 
       if user_choose == 10
-        # @run.save_data
+        @run.save_all_data
         exit
       else
         @run.options(user_choose)
