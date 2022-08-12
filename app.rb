@@ -204,6 +204,7 @@ class App
     save_data(albums, 'albums')
   end
 
+  # rubocop:disable Metrics/MethodLength
   def load_all_data
     books = load_data('books')
     books.each do |book|
@@ -225,15 +226,16 @@ class App
       @authors.push(Author.new(author['first_name'], author['last_name']))
     end
 
-    labels = load_data('labels') 
-    labels.each do |label| 
+    labels = load_data('labels')
+    labels.each do |label|
       @labels.push(Label.new(label['title'], label['color']))
-    end 
+    end
 
-    genres = load_data('genres') 
-    genres.each do |genre| 
-      @genres.push(Genre.new(genre['name'])) 
-    end 
+    genres = load_data('genres')
+    genres.each do |genre|
+      @genres.push(Genre.new(genre['name']))
+    end
   end
+  # rubocop:enable Metrics/MethodLength
 end
 # rubocop:enable  Metrics/ClassLength
