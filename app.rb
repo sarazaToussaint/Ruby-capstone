@@ -1,7 +1,7 @@
 require './spec/spec_helper'
-# require 'json'
-require './modules/preserve_data.rb'
+require './modules/preserve_data'
 
+# rubocop:disable  Metrics/ClassLength
 class App
   include PreserveData
 
@@ -182,31 +182,32 @@ class App
     puts 'Genre Created successfully'
     puts
   end
-  
+
   def save_all_data
     books = []
     games = []
 
     @books.each do |book|
-      books.push({publish_date: book.publish_date, publisher: book.publisher, state: book.cover_state })
+      books.push({ publish_date: book.publish_date, publisher: book.publisher, state: book.cover_state })
     end
     save_data(books, 'books')
 
     @games.each do |game|
-      games.push({publish_date: game.publish_date, muliplayer: game.multiplayer, last_played: game.last_played_at})
-    end  
-    save_data(games, 'games')  
+      games.push({ publish_date: game.publish_date, muliplayer: game.multiplayer, last_played: game.last_played_at })
+    end
+    save_data(games, 'games')
   end
 
   def load_all_data
     books = load_data('books')
-    books.each do |book| 
+    books.each do |book|
       @books.push(Book.new(book['publish_date'], book['publisher'], book['state']))
-    end 
+    end
 
     games = load_data('games')
     games.each do |game|
       @games.push(Game.new(game['publish_date'], game['muliplayer'], game['last_played']))
-    end  
-  end  
+    end
+  end
 end
+# rubocop:enable  Metrics/ClassLength
