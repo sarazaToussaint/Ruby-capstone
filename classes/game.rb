@@ -7,7 +7,7 @@ class Game < Item
   def initialize(publish_date, multiplayer, last_played_at)
     super(publish_date)
     @multiplayer = multiplayer
-    @last_played_at = Date.strptime(last_played_at, '%d-%m-%Y')
+    @last_played_at = Date.strptime(last_played_at, '%Y-%m-%d')
   end
 
   def can_be_archived?
