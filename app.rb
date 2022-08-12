@@ -224,6 +224,16 @@ class App
     authors.each do |author|
       @authors.push(Author.new(author['first_name'], author['last_name']))
     end
+
+    labels = load_data('labels') 
+    labels.each do |label| 
+      @labels.push(Label.new(label['title'], label['color']))
+    end 
+
+    genres = load_data('genres') 
+    genres.each do |genre| 
+      @genres.push(Genre.new(genre['name'])) 
+    end 
   end
 end
 # rubocop:enable  Metrics/ClassLength
