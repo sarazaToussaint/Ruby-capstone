@@ -186,6 +186,7 @@ class App
   def save_all_data
     books = []
     games = []
+    albums = []
 
     @books.each do |book|
       books.push({ publish_date: book.publish_date, publisher: book.publisher, state: book.cover_state })
@@ -196,6 +197,11 @@ class App
       games.push({ publish_date: game.publish_date, muliplayer: game.multiplayer, last_played: game.last_played_at })
     end
     save_data(games, 'games')
+
+    @albums.each do |album|
+      albums.push({ publish_date: album.publish_date, name: album.name, on_spotify: album.on_spotify })
+    end
+    save_data(albums, 'albums')
   end
 
   def load_all_data
@@ -207,6 +213,16 @@ class App
     games = load_data('games')
     games.each do |game|
       @games.push(Game.new(game['publish_date'], game['muliplayer'], game['last_played']))
+    end
+
+    albums = load_data('albums')
+    albums.each do |album|
+      @albums.push(MusicAlbum.new(album['publish_date'], album['name'], on_spotify: album['on_spotify']))
+    end
+
+    authors = load_data('authors')
+    authors.each do |author|
+      @authors.push(Author.new(author['first_name'], author['last_name']))
     end
   end
 end
